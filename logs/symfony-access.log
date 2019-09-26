@@ -447,3 +447,7 @@
 172.19.0.1 - - [26/Sep/2019:11:35:08 +0000] "POST /bb1/form/update HTTP/1.1" 500 22941 "http://localhost:740/bb1/form/update" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"
 172.19.0.1 - - [26/Sep/2019:11:35:27 +0000] "POST /bb1/form/update HTTP/1.1" 500 90474 "http://localhost:740/bb1/form/update" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"
 172.19.0.1 - - [26/Sep/2019:11:35:35 +0000] "POST /bb1/form/update HTTP/1.1" 200 735111 "http://localhost:740/bb1/form/update" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"
+172.19.0.1 - - [26/Sep/2019:11:47:38 +0000] "GET / HTTP/1.1" 200 271 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"
+172.19.0.1 - - [26/Sep/2019:11:47:38 +0000] "GET /assets/js/app.js HTTP/1.1" 404 179474 "http://localhost:740/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"
+172.19.0.1 - - [26/Sep/2019:11:49:14 +0000] "GET / HTTP/1.1" 200 271 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"
+172.19.0.1 - - [26/Sep/2019:11:49:14 +0000] "GET /assets/js/app.js HTTP/1.1" 404 179474 "http://localhost:740/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"

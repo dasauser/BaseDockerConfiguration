@@ -1,0 +1,37 @@
+version: '2'
+services:
+  # python:
+  #   container_name: python3-alpine
+  #   image: python:3
+  #   volumes:
+  #     - ../../www:/var/www
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "732:732"
+      - "733:733"
+      - "734:734"
+      - "740:740"
+    volumes:
+      - ./hosts:/etc/nginx/conf.d
+      - ../../www:/var/www
+      - ./logs:/var/log/nginx
+    links:
+      - php
+  php:
+    container_name: php
+    build: ./images/php
+    volumes:
+      - ../../www:/var/www
+  # mysql:
+  #   container_name: mysql-symfony
+  #   image: mysql:5.6
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - ./mysql:/var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root

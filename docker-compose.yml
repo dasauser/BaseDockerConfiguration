@@ -11,9 +11,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "732:732"
-      - "733:733"
-      - "734:734"
       - "740:740"
     volumes:
       - ./hosts:/etc/nginx/conf.d

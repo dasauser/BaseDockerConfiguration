@@ -1,1 +1,5 @@
-/logs/*
+/logs/apache2/*
+!/logs/apache2/
+/logs/nginx/*
+!/logs/nginx/
+/db/mysql

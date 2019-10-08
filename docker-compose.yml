@@ -1,17 +1,17 @@
 version: "3.7"
 services:
 
-  apache:
-    container_name: apache
-    image: httpd:latest
-    ports:
-      - "732:80"
-    volumes:
-      - ../../www/bitrix:/usr/local/apache2/htdocs
-      # - ./hosts/apache2:/usr/local/apache2/conf
-      - ./logs/apache2:/usr/local/apache2/logs
-    depends_on:
-      - php
+  # apache:
+  #   container_name: apache
+  #   image: httpd:latest
+  #   ports:
+  #     - "732:80"
+  #   volumes:
+  #     - ../../www/bitrix:/usr/local/apache2/htdocs
+  #     # - ./hosts/apache2:/usr/local/apache2/conf
+  #     - ./logs/apache2:/usr/local/apache2/logs
+  #   depends_on:
+  #     - php
 
   nginx:
     container_name: nginx
@@ -30,23 +30,23 @@ services:
     build: ./images/php
     volumes:
       - ../../www:/var/www
-    links:
-       - mysql:db
+    # links:
+    #    - mysql:db
 
-  mysql:
-    container_name: mysql
-    image: mysql
-    ports: 
-      - "3306:3306"
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+  # mysql:
+  #   container_name: mysql
+  #   image: mysql
+  #   ports: 
+  #     - "3306:3306"
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8080:8080"
-    links:
-      - mysql:db
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  #   links:
+  #     - mysql:db

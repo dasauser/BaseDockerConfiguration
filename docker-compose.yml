@@ -18,18 +18,35 @@ services:
     image: nginx:latest
     ports:
       - "740:740"
+      - "741:741"
+      - "742:742"
     volumes:
       - ../../www:/var/www
       - ./hosts/nginx:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
     depends_on:
       - php
+    networks:
+      - internal
 
   php:
     container_name: php
     build: ./images/php
     volumes:
       - ../../www:/var/www
+    environment:
+      XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    networks:
+      - internal
+      
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.220.0/28
     # links:
     #    - mysql:db
 

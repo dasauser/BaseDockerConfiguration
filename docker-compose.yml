@@ -1,13 +1,13 @@
 version: "3.3"
 services:
+
   nginx:
     container_name: nginx
-    image: nginx:latest
+    image: nginx:1.17
     ports:
       - "740:740"
       - "741:741"
-      - "742:742"
-      - "743:743"
+      - "747:747"
     volumes:
       - ../../www:/var/www
       - ./hosts/nginx:/etc/nginx/conf.d
@@ -28,7 +28,21 @@ services:
       PHP_IDE_CONFIG: "serverName=Docker"
     networks:
       - internal
-      
+
+  # postgresql:
+  #   container_name: postgresql
+  #   image: postgres:12.1
+  #   restart: always
+  #   environment: 
+  #     POSTGRES_USER: admin
+  #     POSTGRES_PASSWORD: admin
+
+  # phpmyadmin:
+  #   container_name: phpmyadmin
+  #   image: phpmyadmin/phpmyadmin
+  #   ports:
+  #     - "743:8080"
+    
 networks:
   internal:
     driver: bridge

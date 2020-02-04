@@ -5,7 +5,7 @@ FROM php:7.2-fpm
 RUN pecl install xdebug-2.8.0 \
 	&& docker-php-ext-enable xdebug 
 
-ADD ./php.ini /var/www/docker/images/php/php.ini
+COPY ./php.ini /var/www/docker/images/php/php.ini
 
 WORKDIR /var/www
 

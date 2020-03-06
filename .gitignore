@@ -3,3 +3,4 @@
 /logs/nginx/*
 !/logs/nginx/
 /db/mysql
+/hosts

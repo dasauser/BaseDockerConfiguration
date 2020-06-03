@@ -1,55 +1,33 @@
 version: "3.3"
 services:
-
   nginx:
     container_name: nginx
     image: nginx:1.17
     ports:
-      - "740:740"
-      - "741:741"
-      - "742:742"
-      - "743:743"
-      - "744:744"
-      - "747:747"
+      - 789:80
     volumes:
-      - ../../www:/var/www
+      - ./src:/src/
       - ./hosts/nginx:/etc/nginx/conf.d
-      - ./logs/nginx:/var/log/nginx
-    depends_on:
-      - php
-    networks:
-      - internal
+      - ./logs/nginx:/logs/nginx
 
   php:
     container_name: php
     build: ./images/php
     volumes:
-      - ../../www:/var/www
-      - /usr/bin:/usr/bin
+      - ./src:/src
+
+  postgres:
+    container_name: postgres
+    image: postgres:9.5
+    restart: always
     environment:
-      XDEBUG_CONFIG: "remote_host=192.168.220.1 remote_enable=1"
-      PHP_IDE_CONFIG: "serverName=Docker"
-    networks:
-      - internal
+      POSTGRES_DB: base
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
 
-  # postgresql:
-  #   container_name: postgresql
-  #   image: postgres:12.1
-  #   restart: always
-  #   environment: 
-  #     POSTGRES_USER: admin
-  #     POSTGRES_PASSWORD: admin
-
-  # phpmyadmin:
-  #   container_name: phpmyadmin
-  #   image: phpmyadmin/phpmyadmin
-  #   ports:
-  #     - "743:8080"
-    
-networks:
-  internal:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.220.0/28
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 987:8080

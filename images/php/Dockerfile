@@ -1,12 +1,15 @@
 FROM php:7.2-fpm
 
-#RUN docker-php-ext-install -j$(nproc) mysqli pdo_mysql
+RUN apt-get update && apt-get install -y \
+    libmagickwand-dev --no-install-recommends \
+    libpq-dev \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo pdo_pgsql pgsql \
+    && pecl install imagick \
+	&& docker-php-ext-enable imagick
 
-RUN pecl install xdebug-2.8.0 \
-	&& docker-php-ext-enable xdebug 
+ADD ./php.ini /usr/local/etc/php
 
-COPY ./php.ini /var/www/docker/images/php/php.ini
-
-WORKDIR /var/www
+WORKDIR /src
 
 CMD ["php-fpm"]

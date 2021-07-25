@@ -1,0 +1,11 @@
+FROM mysql:5.7.33
+
+ADD ./bootstrap /docker-entrypoint-initdb.d
+ADD ./config /etc/mysql/conf.d
+
+ENV MYSQL_DATABASE=${MYSQL_DATABASE}
+ENV MYSQL_USER=${MYSQL_USER}
+ENV MYSQL_PASSWORD=${MYSQL_PASSWORD}
+ENV MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+CMD ["mysqld"]

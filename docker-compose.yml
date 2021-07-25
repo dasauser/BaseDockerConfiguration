@@ -2,9 +2,12 @@ version: "3.3"
 services:
   php:
     container_name: php
-    build: ./images/php
+    build: ./services/php
+    env_file:
+      - ./services/php/php.ini.env
     volumes:
-      - ./src:/src
+      - ./services/php/log:/var/log/php
+      - ./src:/var/www
 
   adminer:
     container_name: adminer
@@ -13,7 +16,7 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - "php"
+      - php
 
   nginx:
     container_name: nginx

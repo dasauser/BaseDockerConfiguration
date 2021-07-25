@@ -24,6 +24,18 @@ services:
       - ./services/nginx/log:/var/log/nginx
       - ./src:/var/www
 
+  mysql:
+    container_name: mysql
+    build: ./services/mysql
+    restart: always
+    volumes:
+      - ./services/mysql/log:/var/log/mysql
+      - ./services/mysql/data:/var/backups/mysql
+    ports:
+      - 3306:3306
+    env_file:
+      - ./services/mysql/mysql.env
+
   # if u need postgres...
 
   # postgres:
@@ -33,20 +45,8 @@ services:
   #  volumes:
   #    - ./db:/docker-entrypoint-initdb.d
   #   ports:
-  #     - 5432:5432   
+  #     - 5432:5432
   #   environment:
   #     POSTGRES_DB: base
   #     POSTGRES_USER: admin
   #     POSTGRES_PASSWORD: admin
-
-  mysql:
-    container_name: mysql
-    build: ./services/mysql
-    restart: always
-    volumes:
-      - ./services/mysql/log:/var/log/mysql
-      - ./services/mysql/data:/var/backups/mysql
-    ports:
-      - 3306:3306   
-    env_file:
-      - ./services/mysql/mysql.env

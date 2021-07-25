@@ -17,16 +17,12 @@ services:
 
   nginx:
     container_name: nginx
-    image: nginx:1.17
+    build: ./services/nginx
     ports:
       - 80:80
     volumes:
-      - ./src:/src/
-      - ./hosts/nginx:/etc/nginx/conf.d
-      - ./logs/nginx:/logs/nginx
-    depends_on:
-      - "php"
-      - "adminer"
+      - ./services/nginx/log:/var/log/nginx
+      - ./src:/var/www
 
   # if u need postgres...
 

@@ -8,6 +8,8 @@ services:
     volumes:
       - ./services/php/log:/var/log/php
       - ./src:/var/www
+    networks:
+      - internal
 
   adminer:
     container_name: adminer
@@ -17,6 +19,8 @@ services:
       - 8080:8080
     depends_on:
       - php
+    networks:
+      - internal
 
   nginx:
     container_name: nginx
@@ -26,6 +30,8 @@ services:
     volumes:
       - ./services/nginx/log:/var/log/nginx
       - ./src:/var/www
+    networks:
+      - internal
 
   mysql:
     container_name: mysql
@@ -38,18 +44,29 @@ services:
       - 3306:3306
     env_file:
       - ./services/mysql/mysql.env
+    networks:
+      - internal
 
-  # if u need postgres...
 
-  # postgres:
-  #   container_name: postgres
-  #   image: postgres:9.5
-  #   restart: always
-  #  volumes:
-  #    - ./db:/docker-entrypoint-initdb.d
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     POSTGRES_DB: base
-  #     POSTGRES_USER: admin
-  #     POSTGRES_PASSWORD: admin
+#    postgres:
+#      container_name: postgres
+#      image: postgres:9.5
+#      restart: always
+#      volumes:
+#        - ./db:/docker-entrypoint-initdb.d
+#      ports:
+#        - 5432:5432
+#      environment:
+#        POSTGRES_DB: base
+#        POSTGRES_USER: admin
+#        POSTGRES_PASSWORD: admin
+#      networks:
+#        - internal
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.221.0/28

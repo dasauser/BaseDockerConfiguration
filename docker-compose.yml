@@ -26,7 +26,7 @@ services:
     container_name: nginx
     build: ./services/nginx
     ports:
-      - 80:80
+      - 81:81
     volumes:
       - ./services/nginx/log:/var/log/nginx
       - ./src:/var/www
